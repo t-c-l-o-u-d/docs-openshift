@@ -1,0 +1,26 @@
+# GNU Affero General Public License v3.0 or later (see COPYING or https://www.gnu.org/licenses/agpl.txt)
+
+FROM ghcr.io/t-c-l-o-u-d/config-devcontainer/arch-linux-devcontainer-base:latest
+# FROM ghcr.io/t-c-l-o-u-d/config-devcontainer/debian-devcontainer-base:latest
+# FROM ghcr.io/t-c-l-o-u-d/config-devcontainer/fedora-devcontainer-base:latest
+
+# pull in USER from devcontainer.json
+ARG USER
+
+# add the USER to the image
+RUN useradd --create-home --groups wheel ${USER}
+
+# =======================================
+# repository specific commands start here
+# =======================================
+
+# TODO: MARKDOWN TOOLING?
+# add bash files
+#COPY template-devcontainer /etc/skel/.config/bash/template-devcontainer
+
+# =====================================
+# repository specific commands end here
+# =====================================
+
+# ensure the image starts as USER
+USER ${USER}
