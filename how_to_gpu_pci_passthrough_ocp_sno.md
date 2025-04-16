@@ -10,7 +10,7 @@
 
 
 2. Apply a **MachineConfig** to enable IOMMU
-    ```
+    ```bash
     $ oc apply -f 100-master-kernel-arg-enable-iommu.yaml
     ```
 
@@ -91,4 +91,18 @@
     vfio-pci
     ```
 
-6. 
+6. Modify HyperConvered CR to support the devices
+    ```
+    apiVersion: hco.kubevirt.io/v1
+    kind: HyperConverged
+    metadata:
+      name: kubevirt-hyperconverged
+      namespace: openshift-cnv
+    spec:
+      permittedHostDevices:
+        pciHostDevices:
+        - pciDeviceSelector: "1002:744c"
+          resourceName: "amd.com/7900_XTX"
+        - pciDeviceSelector: "1002:ab30"
+          resourceName: "amd.com/7900_XTX_AUDIO"
+    ```
