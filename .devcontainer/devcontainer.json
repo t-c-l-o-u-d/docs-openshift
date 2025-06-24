@@ -37,7 +37,7 @@
                 // repository specific settings go here
             },
             "extensions": [
-                "ms-azuretools.vscode-docker"
+                "ms-azuretools.vscode-containers"
                 // repository specific extensions go here
             ]
         }
